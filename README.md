@@ -1,5 +1,5 @@
 # live_websocket 中间件
-websocket raw data protocol plugin for monibuca
+websocket raw data protocol plugin for live_go
 
 通过Websocket传输音视频数据，使用LiveP播放器进行播放。
 
@@ -12,7 +12,7 @@ https://github.com/qnsoft/live_websocket.git
 可配置WS协议和WSS协议监听地址端口
 
 ```toml
-[Jessica]
+[LiveWebSocket]
 ListenAddr = ":8080"
 CertFile = "../foo.cert"
 KeyFile  = "../foo.key"

@@ -17,7 +17,7 @@ var config struct {
 
 func init() {
 	plugin := &PluginConfig{
-		Name:   "Jessica",
+		Name:   "LiveWebSocket",
 		Config: &config,
 		Run:    run,
 	}
@@ -25,10 +25,10 @@ func init() {
 }
 func run() {
 	if config.ListenAddr != "" || config.ListenAddrTLS != "" {
-		utils.Print(Green("Jessica start at"), BrightBlue(config.ListenAddr), BrightBlue(config.ListenAddrTLS))
+		utils.Print(Green("LiveWebSocket start at"), BrightBlue(config.ListenAddr), BrightBlue(config.ListenAddrTLS))
 		utils.ListenAddrs(config.ListenAddr, config.ListenAddrTLS, config.CertFile, config.KeyFile, http.HandlerFunc(WsHandler))
 	} else {
-		utils.Print(Green("Jessica start reuse gateway port"))
+		utils.Print(Green("LiveWebSocket start reuse gateway port"))
 		http.HandleFunc("/jessica/", WsHandler)
 	}
 }
