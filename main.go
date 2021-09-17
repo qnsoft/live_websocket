@@ -1,4 +1,4 @@
-package jessica
+package live_websocket
 
 import (
 	"net/http"
@@ -25,10 +25,10 @@ func init() {
 }
 func run() {
 	if config.ListenAddr != "" || config.ListenAddrTLS != "" {
-		utils.Print(Green("LiveWebSocket start at"), BrightBlue(config.ListenAddr), BrightBlue(config.ListenAddrTLS))
-		utils.ListenAddrs(config.ListenAddr, config.ListenAddrTLS, config.CertFile, config.KeyFile, http.HandlerFunc(WsHandler))
+		live_utils.Print(Green("LiveWebSocket start at"), BrightBlue(config.ListenAddr), BrightBlue(config.ListenAddrTLS))
+		live_utils.ListenAddrs(config.ListenAddr, config.ListenAddrTLS, config.CertFile, config.KeyFile, http.HandlerFunc(WsHandler))
 	} else {
-		utils.Print(Green("LiveWebSocket start reuse gateway port"))
+		live_utils.Print(Green("LiveWebSocket start reuse gateway port"))
 		http.HandleFunc("/jessica/", WsHandler)
 	}
 }

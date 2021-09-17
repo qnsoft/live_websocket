@@ -1,4 +1,4 @@
-package jessica
+package live_websocket
 
 import (
 	"encoding/binary"
