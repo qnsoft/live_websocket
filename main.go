@@ -28,7 +28,7 @@ func run() {
 		live_utils.Print(Green("LiveWebSocket start at"), BrightBlue(config.ListenAddr), BrightBlue(config.ListenAddrTLS))
 		live_utils.ListenAddrs(config.ListenAddr, config.ListenAddrTLS, config.CertFile, config.KeyFile, http.HandlerFunc(WsHandler))
 	} else {
-		live_utils.Print(Green("LiveWebSocket start reuse gateway port"))
+		live_utils.Print(Green("LiveWebSocket start reuse websocket port"))
 		http.HandleFunc("/LiveWs/", WsHandler)
 	}
 }
