@@ -30,9 +30,9 @@ func WsHandler(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		return
 	}
-	baseStream := Subscriber{ID: r.RemoteAddr, Type: "live_play", Ctx2: r.Context()}
+	baseStream := Subscriber{ID: r.RemoteAddr, Type: "LiveWs", Ctx2: r.Context()}
 	if isFlv {
-		baseStream.Type = "live_playFlv"
+		baseStream.Type = "LiveWsFlv"
 	}
 	defer conn.Close()
 	go func() {

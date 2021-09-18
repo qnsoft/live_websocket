@@ -17,7 +17,7 @@ var config struct {
 
 func init() {
 	plugin := &PluginConfig{
-		Name:   "LiveWebSocket",
+		Name:   "LiveWs",
 		Config: &config,
 		Run:    run,
 	}
@@ -29,6 +29,6 @@ func run() {
 		live_utils.ListenAddrs(config.ListenAddr, config.ListenAddrTLS, config.CertFile, config.KeyFile, http.HandlerFunc(WsHandler))
 	} else {
 		live_utils.Print(Green("LiveWebSocket start reuse gateway port"))
-		http.HandleFunc("/live_play/", WsHandler)
+		http.HandleFunc("/LiveWs/", WsHandler)
 	}
 }
