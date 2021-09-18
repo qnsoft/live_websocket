@@ -7,7 +7,7 @@ import (
 
 	"github.com/gobwas/ws"
 	. "github.com/qnsoft/live_sdk"
-	utils "github.com/qnsoft/live_utils"
+	"github.com/qnsoft/live_utils"
 	"github.com/qnsoft/live_utils/codec"
 )
 
@@ -71,8 +71,8 @@ func WsHandler(w http.ResponseWriter, r *http.Request) {
 					OpCode: ws.OpBinary,
 					Length: int64(len(payload) + 5),
 				})
-				head := utils.GetSlice(5)
-				defer utils.RecycleSlice(head)
+				head := live_utils.GetSlice(5)
+				defer live_utils.RecycleSlice(head)
 				head[0] = t - 7
 				binary.BigEndian.PutUint32(head[1:5], ts)
 				if _, err = conn.Write(head); err != nil {
