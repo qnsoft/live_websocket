@@ -6,7 +6,7 @@ import (
 	"regexp"
 
 	"github.com/gobwas/ws"
-	. "github.com/qnsoft/live_sdk"
+	"github.com/qnsoft/live_sdk"
 	"github.com/qnsoft/live_utils"
 	"github.com/qnsoft/live_utils/codec"
 )
@@ -30,7 +30,7 @@ func WsHandler(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		return
 	}
-	baseStream := Subscriber{ID: r.RemoteAddr, Type: "LiveWs", Ctx2: r.Context()}
+	baseStream := live_sdk.Subscriber{ID: r.RemoteAddr, Type: "LiveWs", Ctx2: r.Context()}
 	if isFlv {
 		baseStream.Type = "LiveWsFlv"
 	}
@@ -83,13 +83,13 @@ func WsHandler(w http.ResponseWriter, r *http.Request) {
 		}
 		if vt != nil {
 			writeAV(codec.FLV_TAG_TYPE_VIDEO, 0, vt.ExtraData.Payload)
-			baseStream.OnVideo = func(ts uint32, pack *VideoPack) {
+			baseStream.OnVideo = func(ts uint32, pack *live_sdk.VideoPack) {
 				writeAV(codec.FLV_TAG_TYPE_VIDEO, ts, pack.Payload)
 			}
 		}
 		if at != nil {
 			writeAV(codec.FLV_TAG_TYPE_AUDIO, 0, at.ExtraData)
-			baseStream.OnAudio = func(ts uint32, pack *AudioPack) {
+			baseStream.OnAudio = func(ts uint32, pack *live_sdk.AudioPack) {
 				writeAV(codec.FLV_TAG_TYPE_AUDIO, ts, pack.Payload)
 			}
 		}

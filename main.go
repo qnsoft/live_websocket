@@ -3,8 +3,8 @@ package live_websocket
 import (
 	"net/http"
 
-	. "github.com/logrusorgru/aurora"
-	. "github.com/qnsoft/live_sdk"
+	"github.com/logrusorgru/aurora"
+	"github.com/qnsoft/live_sdk"
 	"github.com/qnsoft/live_utils"
 )
 
@@ -16,19 +16,19 @@ var config struct {
 }
 
 func init() {
-	plugin := &PluginConfig{
+	plugin := &live_sdk.PluginConfig{
 		Name:   "LiveWs",
 		Config: &config,
 		Run:    run,
 	}
-	InstallPlugin(plugin)
+	live_sdk.InstallPlugin(plugin)
 }
 func run() {
 	if config.ListenAddr != "" || config.ListenAddrTLS != "" {
-		live_utils.Print(Green("LiveWebSocket start at"), BrightBlue(config.ListenAddr), BrightBlue(config.ListenAddrTLS))
+		live_utils.Print(aurora.Green("LiveWebSocket start at"), aurora.BrightBlue(config.ListenAddr), aurora.BrightBlue(config.ListenAddrTLS))
 		live_utils.ListenAddrs(config.ListenAddr, config.ListenAddrTLS, config.CertFile, config.KeyFile, http.HandlerFunc(WsHandler))
 	} else {
-		live_utils.Print(Green("LiveWebSocket start reuse websocket port"))
+		live_utils.Print(aurora.Green("LiveWebSocket start reuse websocket port"))
 		http.HandleFunc("/LiveWs/", WsHandler)
 	}
 }
