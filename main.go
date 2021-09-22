@@ -25,10 +25,10 @@ func init() {
 }
 func run() {
 	if config.ListenAddr != "" || config.ListenAddrTLS != "" {
-		live_utils.Print(aurora.Green("LiveWebSocket start at"), aurora.BrightBlue(config.ListenAddr), aurora.BrightBlue(config.ListenAddrTLS))
+		live_utils.Print(aurora.Green("LiveWs start at"), aurora.BrightBlue(config.ListenAddr), aurora.BrightBlue(config.ListenAddrTLS))
 		live_utils.ListenAddrs(config.ListenAddr, config.ListenAddrTLS, config.CertFile, config.KeyFile, http.HandlerFunc(WsHandler))
 	} else {
-		live_utils.Print(aurora.Green("LiveWebSocket start reuse websocket port"))
-		http.HandleFunc("/LiveWs/", WsHandler)
+		live_utils.Print(aurora.Green("LiveWs start reuse websocket port"))
+		http.HandleFunc("/livews/", WsHandler)
 	}
 }

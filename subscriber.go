@@ -11,7 +11,7 @@ import (
 	"github.com/qnsoft/live_utils/codec"
 )
 
-var streamPathReg = regexp.MustCompile("/(LiveWs/)?((.+)(\\.flv)|(.+))")
+var streamPathReg = regexp.MustCompile("/(livews/)?((.+)(\\.flv)|(.+))")
 
 func WsHandler(w http.ResponseWriter, r *http.Request) {
 	isFlv := false
